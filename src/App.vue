@@ -1,5 +1,6 @@
 <template>
   <div id="app" class="container my-5">
+    {{ info }}
     <div class="row mb-3">
       <div class="col-md-9">
         <h1>My online store</h1>
@@ -34,6 +35,9 @@ export default {
   components: {
     Item,
     ShoppingCart,
+  },
+  mounted() {
+    this.$store.dispatch('fetchProducts')
   },
 };
 </script>
