@@ -1,7 +1,9 @@
 <template>
   <div class="col-md-3">
     <div class="card">
-      <img :src="image" :alt="name" class="card-img-top">
+      <div class="image-container">
+        <img :src="image" :alt="name" class="card-img-top">
+      </div>
       <div class="card-body">
         <h4 class="card-title">{{ name }}</h4>
         <div class="card-text">{{ price | dollars }}</div>
@@ -29,3 +31,28 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  img {
+    max-width: 150px;
+  }
+  .image-container {
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+  }
+  .card {
+    padding-top: 10px;
+    height: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+  .col-md-3 {
+    padding-bottom: 20px;
+  }
+</style>

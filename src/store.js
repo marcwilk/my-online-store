@@ -31,7 +31,6 @@ export default new Vuex.Store({
             price: item.price,
           }
         })
-        console.log(newForSale)
         context.commit('forSale', newForSale)
         }
       )
