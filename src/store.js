@@ -21,7 +21,7 @@ export default new Vuex.Store({
     addToCart(context, invId) { context.commit('ADD_TO_CART', invId); },
     removeFromCart(context, index) { context.commit('REMOVE_FROM_CART', index); },
     fetchProducts(context) {
-      axios.get('http://localhost:8082/api/cameras')
+      axios.get('https://collective-api-mww.herokuapp.com/api/cameras')
       .then(function (response) {
         let newForSale = response.data.map(item => {
           return {
