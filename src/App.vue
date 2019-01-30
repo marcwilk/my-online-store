@@ -5,7 +5,7 @@
       <div class="col-md-9">
         <h1>Camera Store</h1>
       </div>
-      <div class="col-md-3">
+      <div class="col-md-3 text-right">
         <shoppingCart />
       </div>
     </div>
@@ -45,5 +45,17 @@ export default {
 <style>
   * {
     font-family: 'Noto Serif SC', serif;
+  }
+  html {
+    background-color: #A9A9A9;
+  }
+  #app {
+    background-color: #A9A9A9;
+  }
+  body {
+    background-color: #A9A9A9;
+  }
+  .text-right {
+    padding-top: 15px;
   }
 </style>
