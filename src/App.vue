@@ -39,6 +39,7 @@ export default {
   mounted() {
     this.$store.dispatch('fetchProducts')
     this.$store.dispatch('populateCart')
+    this.$store.dispatch('removeFromCart')
   },
 };
 </script>

@@ -13,8 +13,8 @@ export default new Vuex.Store({
     inCart: state => state.inCart,
   },
   mutations: {
-    ADD_TO_CART(state, invId) { state.inCart.push(invId); },
-    REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
+    ADD_TO_CART(state, invId) { state.inCart.push(invId) },
+    REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1) },
     FETCH_PRODUCTS(state, payload) { state.forSale = payload },
     POPULATE_CART(state, payload) { state.inCart = payload },
   },
@@ -22,11 +22,17 @@ export default new Vuex.Store({
     addToCart(context, invId) {
       axios.patch(`https://collective-api-mww.herokuapp.com/api/cameras/${invId}/add`)
       .then(function (response) {
-        console.log(response.data.inCart)
         { context.commit('ADD_TO_CART', invId) }
       })
     },
-    removeFromCart(context, index) { context.commit('REMOVE_FROM_CART', index) },
+    removeFromCart(context, index) {
+      axios.patch(`https://collective-api-mww.herokuapp.com/api/cameras/${index}/remove`)
+      .then(function (response) {
+        console.log(response.data.inCart)
+        console.log(index)
+        { context.commit('REMOVE_FROM_CART', index) }
+      })
+    },
     fetchProducts(context) {
       axios.get('https://collective-api-mww.herokuapp.com/api/cameras')
       .then(function (response) {
