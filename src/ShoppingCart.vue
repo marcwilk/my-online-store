@@ -5,7 +5,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title">Shopping cart</h5>
+            <h5 class="modal-title">Shopping Cart</h5>
             <button class="close" data-dismiss="modal">
               &times;
             </button>
