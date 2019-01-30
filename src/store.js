@@ -15,11 +15,18 @@ export default new Vuex.Store({
   mutations: {
     ADD_TO_CART(state, invId) { state.inCart.push(invId); },
     REMOVE_FROM_CART(state, index) { state.inCart.splice(index, 1); },
-    forSale(state, payload) { state.forSale = payload },
+    FETCH_PRODUCTS(state, payload) { state.forSale = payload },
+    POPULATE_CART(state, payload) { state.inCart = payload },
   },
   actions: {
-    addToCart(context, invId) { context.commit('ADD_TO_CART', invId); },
-    removeFromCart(context, index) { context.commit('REMOVE_FROM_CART', index); },
+    addToCart(context, invId) {
+      axios.patch(`https://collective-api-mww.herokuapp.com/api/cameras/${invId}/add`)
+      .then(function (response) {
+        console.log(response.data.inCart)
+        { context.commit('ADD_TO_CART', invId) }
+      })
+    },
+    removeFromCart(context, index) { context.commit('REMOVE_FROM_CART', index) },
     fetchProducts(context) {
       axios.get('https://collective-api-mww.herokuapp.com/api/cameras')
       .then(function (response) {
@@ -29,11 +36,18 @@ export default new Vuex.Store({
             name : item.name,
             image : item.picture,
             price: item.price,
+            inCart: item.inCart,
           }
         })
-        context.commit('forSale', newForSale)
-        }
-      )
+        { context.commit('FETCH_PRODUCTS', newForSale) }
+      })
+    },
+    populateCart(context, idArray) {
+      axios.get('https://collective-api-mww.herokuapp.com/api/cameras')
+      .then(function (response) {
+        let newInCart = response.data.filter(item => item.inCart).map(item => item.id)
+        { context.commit('POPULATE_CART', newInCart) }
+      })
     }
   },
 });
